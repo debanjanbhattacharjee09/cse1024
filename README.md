@@ -1,56 +1,13 @@
-# cse1024[cse project.py](https://github.com/user-attachments/files/23707336/cse.project.py)
-
-import mysql.connector
-
-# --- 1. Establish a Database Connection ---
-
-try:
-    connection = mysql.connector.connect(host="localhost",user="root",Passwd="sabitabhatt",database="mylibrary")
-return connection
-except mysql.connector.Error as err:
-    print(f"Error connecting to MySQL: {err}")
-return None
-
-# --- 2. Example Function: Add a Book ---
-def add_book():
-    bookname=input("Enter the name of the book = ")
-    writer=input("Enter the name of the writer = ")
-    quantity=int(input("Enter the quantity of books = "))
-    connection = create_connection()
-    if connection:
-        cursor = connection.cursor()
-        sql_query = "INSERT INTO books VALUES (bookname,writer, quantity)"
-        data = (bookname,writer,quantity)
-        try:
-            cursor.execute(sql_query, data)
-            connection.commit() # Essential to save changes
-            print("Book added successfully!")
-        except mysql.connector.Error as err:
-            print(f"Error adding book: {err}")
-        finally:
-            cursor.close()
-            connection.close()
-
-# --- 3. Example Function: View All Books ---
-def view_books():
-    connection = create_connection()
-    if connection:
-        cursor = connection.cursor()
-        sql_query = "SELECT * FROM books"
-        try:
-            cursor.execute(sql_query)
-            results = cursor.fetchall()
-            if results:
-                print("Library Books:")
-                for row in results:
-                    print(f"Code: {row[2]}, Title: {row[0]}, Author: {row[1]}, Total Copies: {row[3]}")
-            else:
-                print("No books found.")
-        except mysql.connector.Error as err:
-            print(f"Error viewing books: {err}")
-        finally:
-            cursor.close()
-            connection.close()
-add_book()
-view_book()
+TITLE: LIBRARY MANAGEMENT SYSTEM
+Overview of the project                                                                                                                                                                                                  Library Management System is a project developed using Object-Oriented Programming (OOP) in Python. The goal of this project is to simulate the operations of a real-world library, including adding books, and viewing books
+Features of the Library Management System                                                                                                                                                                            View all books: Display a list of all available books in the library.                                                                                                                                                Add new books: Allow adding new books to the library’s collection.
+Technologies/tools used in making this project                                                                                                                                                                          Python:                                                                                                                                                                                                                          The primary programming language for implementing the application's logic and functionalities.                                                                                                          Database Management System (DBMS):                                                                                                                                                                                               SQLite3: A lightweight, serverless, self-contained database often used for smaller projects or embedded applications. It's built directly into Python.                                                                  MySQL/PostgreSQL: More robust, client-server databases suitable for larger-scale applications requiring more advanced features and concurrency.
+Steps to install & run the project                                                                                                                                                                                      To install and run a Python-based library management system project, the following steps are generally required:                                                                                                     Python: Ensure Python 3.x is installed on the system.                                                                                                                                                                 Database: If the project uses a database (e.g., SQLite, MySQL), ensure it is installed and configured. For SQLite, it's typically included with Python; for others, separate installation may be needed.
+Instructions for testing : Testing a Library Management System (LMS) requires a comprehensive approach to ensure all functionalities work as expected and meet user requirements. The following instructions outline key areas and steps for testing:
+1. Understand Requirements and Create Test Plan:
+2.Review Requirements: Thoroughly understand the functional and non-functional requirements of the LMS (e.g., adding/deleting books, managing members, search functionality, borrowing/returning, reporting, security, performance).
+3.Develop Test Plan: Create a detailed test plan outlining the scope of testing, test objectives, testing types (e.g., functional, integration, performance, security), testing tools, resources, schedule, and defect management process.
+Screenshots:
+<img width="1892" height="992" alt="image" src="https://github.com/user-attachments/assets/0f515703-b123-48ea-b444-8b8d5fd49c89" />
+<img width="1888" height="967" alt="image" src="https://github.com/user-attachments/assets/71047db3-3a6e-4bea-a29a-38a1a3116fc1" />
 
